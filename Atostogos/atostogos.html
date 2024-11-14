@@ -22,7 +22,7 @@
         }
 
         #meniu {
-            background-color: #1a1649;
+            background-color: #1A1649;
             padding: 10px;
             color: #fff;
             display: flex;
@@ -46,7 +46,7 @@
             display: flex;
             justify-content: center;
             padding: 20px 0;
-            background-color: #f4f4f4;
+            background-color: #BFE4FF;
         }
 
         #calendar {
@@ -67,7 +67,7 @@
         }
 
         #calendar-header button {
-            background-color: #1a1649;
+            background-color: #1A1649;
             color: #fff;
             border: none;
             padding: 5px 10px;
@@ -104,13 +104,19 @@
             font-weight: bold;
         }
 
+        #calendar-dates .vacation-request {
+            background-color: #ffd1d1;
+            color: #b30000;
+            font-weight: bold;
+        }
+
         #calendar-dates .vacation {
             background-color: #ccffcc;
             color: #006600;
             font-weight: bold;
         }
 
-        #vacation-input {
+        #vacation-input, #approve-vacation {
             margin: 20px;
             text-align: center;
         }
@@ -120,7 +126,7 @@
 <body>
 
     <div id="meniu">
-        <img src="../Ikonos ir logo/ADFORM LOGO/MONOCHROMATIC/ADFORM LOGO WHITE.png" alt="Imonės Pavadinimas">
+        <img src="../ADFORM LOGO WHITE.png" alt="Imonės Pavadinimas">
         <a href="../Pagrindinis/pagrindinis.html">Pagrindinis</a>
         <a href="../Naujienos/naujienos.html">Naujienos</a>
         <a href="../Atostogos/atostogos.html">Atostogos</a>
@@ -130,7 +136,6 @@
         <a href="../Komandiruotes/komandiruotes.html">Komandiruotės</a>
     </div>
 
-  
     <div>Atostogos</div>
 
     <div id="calendar-container">
@@ -158,6 +163,10 @@
         <input type="text" id="vacation-name" placeholder="Įveskite vardą">
     </div>
 
+    <div id="approve-vacation">
+        <button onclick="approveVacations()">Patvirtinti visus prašymus</button>
+    </div>
+
     <script>
         const holidays = {
             '01-01': 'Naujieji metai',
@@ -173,7 +182,7 @@
             '12-26': 'Kalėdos (antroji diena)',
         };
 
-        const vacationDays = {};
+        const vacationRequests = {}; // Nepatvirtinti atostogų prašymai
         const calendarDates = document.getElementById("calendar-dates");
         const monthYear = document.getElementById("month-year");
         const prevMonthBtn = document.getElementById("prev-month");
@@ -208,19 +217,19 @@
                     dateCell.title = holidays[dateStr];
                 } 
 
-                if (vacationDays[`${year}-${dateStr}`]) {
-                    dateCell.classList.add("vacation");
-                    dateCell.title = `Atostogauja: ${vacationDays[`${year}-${dateStr}`]}`;
+                if (vacationRequests[`${year}-${dateStr}`]) {
+                    dateCell.classList.add("vacation-request");
+                    dateCell.title = `Nepatvirtinta: ${vacationRequests[`${year}-${dateStr}`]}`;
                 }
 
                 dateCell.addEventListener("mousedown", () => {
                     isDragging = true;
-                    markVacation(dateCell, year, dateStr);
+                    requestVacation(dateCell, year, dateStr);
                 });
 
                 dateCell.addEventListener("mouseover", () => {
                     if (isDragging) {
-                        markVacation(dateCell, year, dateStr);
+                        requestVacation(dateCell, year, dateStr);
                     }
                 });
 
@@ -232,15 +241,28 @@
             }
         }
 
-        function markVacation(dateCell, year, dateStr) {
+        function requestVacation(dateCell, year, dateStr) {
             const name = vacationInput.value.trim();
             if (name) {
-                vacationDays[`${year}-${dateStr}`] = name;
-                dateCell.classList.add("vacation");
-                dateCell.title = `Atostogauja: ${name}`;
+                vacationRequests[`${year}-${dateStr}`] = name;
+                dateCell.classList.add("vacation-request");
+                dateCell.title = `Nepatvirtinta: ${name}`;
             } else {
                 alert("Įveskite vardą, kas atostogauja.");
             }
+        }
+
+        function approveVacations() {
+            Object.keys(vacationRequests).forEach(dateKey => {
+                const name = vacationRequests[dateKey];
+                const dateCell = Array.from(calendarDates.children).find(cell => cell.title === `Nepatvirtinta: ${name}`);
+                if (dateCell) {
+                    dateCell.classList.remove("vacation-request");
+                    dateCell.classList.add("vacation");
+                    dateCell.title = `Patvirtinta: ${name}`;
+                }
+            });
+            Object.keys(vacationRequests).forEach(dateKey => delete vacationRequests[dateKey]);
         }
 
         prevMonthBtn.addEventListener("click", () => {
