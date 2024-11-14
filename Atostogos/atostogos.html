@@ -191,6 +191,11 @@
             border-radius: 5px;
             font-size: 16px;
         }
+
+        #remaining-vacation {
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -245,6 +250,9 @@
         <button onclick="cancelVacation()">Atšaukti atostogas</button>
     </div>
 
+    <!-- Rodyti likusias atostogas -->
+    <div id="remaining-vacation"></div>
+
     <div id="request-table">
         <h3>Prasymai atostogauti</h3>
         <table>
@@ -283,8 +291,9 @@
         const prevMonthBtn = document.getElementById("prev-month");
         const nextMonthBtn = document.getElementById("next-month");
         const vacationInput = document.getElementById("vacation-name");
-        const requestList = document.getElementById("request-list");
         const cancelInput = document.getElementById("cancel-name");
+        const requestList = document.getElementById("request-list");
+        const remainingVacationDisplay = document.getElementById("remaining-vacation");
 
         let currentDate = new Date();
         let currentMonth = currentDate.getMonth();
@@ -354,14 +363,26 @@
             }
         }
 
-        // Išsaugoti atostogas
         function saveVacation() {
             const name = vacationInput.value.trim();
             if (name) {
                 alert(`Atostogos išsaugotos: ${name}`);
+                showRemainingVacationDays(name); // Rodyti likusias atostogų dienas
             } else {
                 alert("Įveskite vardą, kad išsaugotumėte atostogas.");
             }
+        }
+
+        function showRemainingVacationDays(name) {
+            let vacationDays = 0;
+            const currentDate = new Date();
+            const vacationEndDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 7); // Pavyzdžiui, už 7 dienas
+
+            // Tikriname, kiek dienų liko iki atostogų pabaigos
+            const timeDifference = vacationEndDate.getTime() - currentDate.getTime();
+            const remainingDays = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+            remainingVacationDisplay.innerHTML = `${name} liko ${remainingDays} dienos atostogoms.`;
         }
 
         // Patvirtinti visus prašymus
@@ -404,7 +425,6 @@
             }
         }
 
-        // Funkcija atšaukti atostogas
         function cancelVacation() {
             const name = cancelInput.value.trim();
             if (name) {
