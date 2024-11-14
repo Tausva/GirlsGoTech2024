@@ -4,20 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paieškos rezultatai</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #1a1649;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .result-item {
+            margin-bottom: 10px;
+        }
+        .result-item a {
+            color: #625aca;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Paieškos rezultatai</h1>
     <p>Jūs ieškojote: <span id="paieskos-rezultatas"></span></p>
 
+    <div class="results" id="results-container">
+        <!-- Čia bus įkeltos paieškos rezultatų nuorodos -->
+    </div>
+
     <script>
         // Funkcija gauti paieškos parametrą iš URL
         function gautiPaieskosParametra() {
             const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('q') || 'Nieko neįvesta';
+            return urlParams.get('q') || '';
         }
 
-        // Rodo paieškos rezultatą puslapyje
-        document.getElementById('paieskos-rezultatas').textContent = gautiPaieskosParametra();
+        // Funkcija sugeneruoti paieškos rezultatus
+        function generuotiRezultatus(paieskosZodis) {
+            const resultsContainer = document.getElementById('results-container');
+            
+            if (!paieskosZodis) {
+                resultsContainer.innerHTML = '<p>Nerasta jokių rezultatų.</p>';
+                return;
+            }
+
+            // Imituoti rezultatų puslapius, susijusius su paieškos žodžiu
+            const pages = [
+                { title: 'Pagrindinis puslapis', link: '../Pagrindinis/pagrindinis.html' },
+                { title: 'Naujienos', link: '../Naujienos/naujienos.html' },
+                { title: 'Atostogos', link: '../Atostogos/atostogos.html' },
+                { title: 'Mokymai', link: '../Mokymai/mokymai.html' },
+                { title: 'Padėkos', link: '../Padekos/padekos.html' },
+                { title: 'Darbuotojai', link: '../Darbuotojai/darbuotojai.html' },
+                { title: 'Komandiruotės', link: '../Komandiruotes/komandiruotes.html' }
+            ];
+
+            // Filtruoti ir rodyti puslapius, kuriuose gali būti paieškos žodis
+            pages.forEach(page => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.innerHTML = `<a href="${page.link}?q=${encodeURIComponent(paieskosZodis)}">${page.title} – susiję su "${paieskosZodis}"</a>`;
+                resultsContainer.appendChild(resultItem);
+            });
+        }
+
+        // Vykdyti funkcijas puslapiui užsikrovus
+        const paieskosZodis = gautiPaieskosParametra();
+        document.getElementById('paieskos-rezultatas').textContent = paieskosZodis;
+        generuotiRezultatus(paieskosZodis);
     </script>
 </body>
 </html>
