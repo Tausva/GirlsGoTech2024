@@ -6,12 +6,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adform - Pradinis Puslapis</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .login-container {
+            max-width: 300px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .logo {
+            max-width: 200px;
+            margin-top: 20px;
+        }
     </style>
+    <script>
+        function login(event) {
+            event.preventDefault(); // Sustabdo numatytąją formos pateikimo veikseną
+
+            // Imituojamas prisijungimas - galima pridėti tikrinimus čia
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === "admin" && password === "password") {
+                // Jeigu prisijungimo duomenys teisingi, nukreipia į pagrindinį puslapį
+                window.location.href = "../Pagrindinis/pagrindinis.html";
+            } else {
+                alert("Neteisingas naudotojo vardas arba slaptažodis.");
+            }
+        }
+    </script>
 </head>
 
 <body>
     <div>
-        Pradinis puslapis
+        Pradinis
+    </div>
+    <div class="login-container">
+        <form onsubmit="login(event)">
+            <label for="username">Naudotojo vardas:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Slaptažodis:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Prisijungti">
+        </form>
+    </div>
+    <div>
+        <!-- Logotipas po prisijungimo forma -->
+        <img src="../Ikonos ir logo/ADFORM LOGO/MONOCHROMATIC/ADFORM LOGO DARK BLUE.png" alt="Įmonės logotipas" class="logo">
     </div>
 </body>
 
