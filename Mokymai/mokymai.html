@@ -22,7 +22,7 @@
         }
 
         #meniu {
-            background-color: #34967a;
+            background-color: #1a1649;
             padding: 10px;
             color: #fff;
             display: flex;
@@ -51,7 +51,9 @@
         }
 
         #privalomi-mokymai h2 {
-            color: #333;
+            color: #1a1649;
+            font-size: 24px;
+            font-weight: bold;
         }
 
         #privalomi-mokymai ul {
@@ -68,7 +70,7 @@
         .mokymas h3 {
             margin: 0;
             font-size: 18px;
-            color: #333;
+            color: #1a1649;
         }
 
         .progress-container {
@@ -82,7 +84,7 @@
 
         .progress-bar {
             height: 100%;
-            background-color: #34967a;
+            background-color: #1a1649;
             width: 0;
             transition: width 0.3s;
         }
@@ -110,20 +112,60 @@
             color: #f7c34f;
         }
 
+        /* Redesigned summary section with a progress bar */
         .summary {
-            margin: 15px 0;
-            padding: 10px;
+            margin: 20px 0;
+            padding: 12px 20px;
             width: 80%;
-            background-color: #eef9f0;
-            border: 1px solid #ccd4cc;
-            border-radius: 5px;
-            text-align: center;
+            background-color: #f3f4f8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            color: #1a1649;
+        }
+
+        .summary .progress-overview {
+            width: 100%;
+            background-color: #ddd;
+            height: 15px;
+            border-radius: 7px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .summary .progress-fill {
+            height: 100%;
+            background-color: #1a1649;
+            width: 40%; /* Example width based on completed trainings */
         }
 
         .summary p {
-            font-size: 16px;
-            color: #333;
             margin: 5px 0;
+            font-size: 16px;
+        }
+
+        /* Styling for Upcoming Trainings Section */
+        .upcoming-trainings {
+            margin-top: 30px;
+            padding: 15px;
+            width: 80%;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .upcoming-trainings h3 {
+            color: #1a1649;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .upcoming-trainings ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #555;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -141,14 +183,12 @@
         <a href="../Komandiruotes/komandiruotes.html">Komandiruotės</a>
     </div>
 
-    <div>
-        Mokymai
-    </div>
-
-    <!-- Summary Section -->
+    <!-- Summary Section with a progress bar visualization -->
     <div class="summary">
-        <p>Baigti mokymai: 2 iš 5</p>
-        <p>Liko mokymų: 3</p>
+        <div class="progress-overview">
+            <div class="progress-fill" style="width: 40%;"></div> <!-- Adjust width based on actual progress -->
+        </div>
+        <p>2 iš 5 mokymų baigti</p>
     </div>
 
     <!-- Privalomi mokymai section -->
@@ -205,12 +245,31 @@
                 </div>
             </li>
             <li class="mokymas">
+                <h3>Komandinių įgūdžių mokymai</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 30%;"></div>
+                </div>
+                <p class="status">Statusas: Baigta 30%</p>
+            </li>
+            <li class="mokymas">
                 <h3>Profesionalūs bendravimo įgūdžiai</h3>
                 <div class="progress-container">
                     <div class="progress-bar" style="width: 20%;"></div>
                 </div>
                 <p class="status">Statusas: Baigta 20%</p>
             </li>
+        </ul>
+    </div>
+
+    <!-- Upcoming Internal Trainings Section -->
+    <div class="upcoming-trainings">
+        <h3>Busimi Vidiniai Mokymai</h3>
+        <ul>
+            <li>Efektyvaus laiko planavimo mokymai</li>
+            <li>Lyderystės ugdymo seminaras</li>
+            <li>Streso valdymo praktinis užsiėmimas</li>
+            <li>Projektų valdymo įgūdžiai</li>
+            <li>Inovacijų skatinimo dirbtuvės</li>
         </ul>
     </div>
 
