@@ -40,13 +40,61 @@
         #meniu img {
             height: 40px;
         }
+
+        #content {
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .news-item {
+            background-color: #f5f5f5;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .news-item img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .news-item h2 {
+            margin: 10px 0 5px;
+            color: #34967a;
+            text-align: center;
+        }
+
+        .news-item p {
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #34967a;
+            color: #fff;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 
 <body>
 
     <div id="meniu">
-        <img src="../ADFORM LOGO WHITE.png" alt="Imonės Pavadinimas">
+        <img src="../ADFORM LOGO WHITE.png" alt="Įmonės Pavadinimas">
         <a href="../Pagrindinis/pagrindinis.html">Pagrindinis</a>
         <a href="../Naujienos/naujienos.html">Naujienos</a>
         <a href="../Atostogos/atostogos.html">Atostogos</a>
@@ -56,9 +104,33 @@
         <a href="../Komandiruotes/komandiruotes.html">Komandiruotės</a>
     </div>
 
-    <div>
-        Naujienos
+    <div id="content">
+        <h1>Naujienos</h1>
+
+        <div class="news-item">
+            <img src="../Ikonos ir logo/1.webp" alt="Mindaugas Jonaitis sertifikatas">
+            <h2>Mindaugas Jonaitis pelnė sertifikatą programavimo srityje</h2>
+            <p>Mindaugas Jonaitis gavo aukščiausios klasės sertifikatą programavimo srityje, kuris praturtino įmonės techninę kompetenciją.</p>
+        </div>
+
+        <div class="news-item">
+            <img src="images/asta_project.jpg" alt="Asta Vainienė tarptautinis projektas">
+            <h2>Asta Vainienė sėkmingai baigė tarptautinį projektą</h2>
+            <p>Asta vadovavo sudėtingam tarptautiniam projektui, kuris buvo užbaigtas sėkmingai ir viršijo visus lūkesčius.</p>
+        </div>
+
+        <div class="news-item">
+            <img src="images/jonas_award.jpg" alt="Jonas Petraitis Metų Darbuotojo apdovanojimas">
+            <h2>Jonas Petraitis laimėjo Metų Darbuotojo apdovanojimą</h2>
+            <p>Jonas Petraitis buvo pripažintas Metų Darbuotoju už išskirtinį darbą ir inovatyvių sprendimų įgyvendinimą.</p>
+        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Adform. Visos teisės saugomos.</p>
+        <p>Kontaktai: info@adform.com | Tel: +370 123 45678</p>
+    </footer>
+
 </body>
 
 </html>
