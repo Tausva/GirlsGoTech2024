@@ -116,9 +116,80 @@
             font-weight: bold;
         }
 
-        #vacation-input, #approve-vacation {
+        #vacation-input, #approve-vacation, #request-table {
             margin: 20px;
             text-align: center;
+        }
+
+        #request-table {
+            margin-top: 30px;
+            width: 70%;
+        }
+
+        #request-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #request-table th, #request-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #request-table th {
+            background-color: #f2f2f2;
+        }
+
+        .approve-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .reject-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Pakeistas mygtuko "Patvirtinti visus prašymus" fonas */
+        #approve-all-vacation button {
+            background-color: #BFE4FF; /* HEX spalva */
+            color: #1A1649;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Mygtukas atšaukti atostogas su sumažintu dydžiu */
+        #cancel-vacation button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px; /* Sumažintas dydis */
+        }
+
+        /* Mygtukas išsaugoti atostogas */
+        #save-vacation button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
         }
     </style>
 </head>
@@ -136,8 +207,8 @@
         <a href="../Komandiruotes/komandiruotes.html">Komandiruotės</a>
     </div>
 
-    <div>Atostogos</div>
-
+    <!-- Pašalintas žodis "Atostogos" -->
+    
     <div id="calendar-container">
         <div id="calendar">
             <div id="calendar-header">
@@ -163,8 +234,32 @@
         <input type="text" id="vacation-name" placeholder="Įveskite vardą">
     </div>
 
-    <div id="approve-vacation">
-        <button onclick="approveVacations()">Patvirtinti visus prašymus</button>
+    <!-- Mygtukas išsaugoti atostogas -->
+    <div id="save-vacation">
+        <button onclick="saveVacation()">Išsaugoti atostogas</button>
+    </div>
+
+    <!-- Mygtukas atšaukti atostogas -->
+    <div id="cancel-vacation">
+        <input type="text" id="cancel-name" placeholder="Įveskite vardą norint atšaukti" />
+        <button onclick="cancelVacation()">Atšaukti atostogas</button>
+    </div>
+
+    <div id="request-table">
+        <h3>Prasymai atostogauti</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Vardas</th>
+                    <th>Statusas</th>
+                    <th>Veiksmai</th>
+                </tr>
+            </thead>
+            <tbody id="request-list">
+                <!-- Atostogų prašymai bus čia -->
+            </tbody>
+        </table>
     </div>
 
     <script>
@@ -188,6 +283,8 @@
         const prevMonthBtn = document.getElementById("prev-month");
         const nextMonthBtn = document.getElementById("next-month");
         const vacationInput = document.getElementById("vacation-name");
+        const requestList = document.getElementById("request-list");
+        const cancelInput = document.getElementById("cancel-name");
 
         let currentDate = new Date();
         let currentMonth = currentDate.getMonth();
@@ -247,22 +344,94 @@
                 vacationRequests[`${year}-${dateStr}`] = name;
                 dateCell.classList.add("vacation-request");
                 dateCell.title = `Nepatvirtinta: ${name}`;
+
+                // Pridėti į atostogų prašymų sąrašą
+                const row = document.createElement("tr");
+                row.innerHTML = `<td>${dateStr}</td><td>${name}</td><td>Nepatvirtinta</td><td><button onclick="approveRequest('${dateStr}')">Patvirtinti</button><button onclick="rejectRequest('${dateStr}')">Atmesti</button></td>`;
+                requestList.appendChild(row);
             } else {
                 alert("Įveskite vardą, kas atostogauja.");
             }
         }
 
-        function approveVacations() {
-            Object.keys(vacationRequests).forEach(dateKey => {
-                const name = vacationRequests[dateKey];
+        // Išsaugoti atostogas
+        function saveVacation() {
+            const name = vacationInput.value.trim();
+            if (name) {
+                alert(`Atostogos išsaugotos: ${name}`);
+            } else {
+                alert("Įveskite vardą, kad išsaugotumėte atostogas.");
+            }
+        }
+
+        // Patvirtinti visus prašymus
+        function approveAllVacations() {
+            const rows = requestList.querySelectorAll("tr");
+            rows.forEach(row => {
+                const dateStr = row.cells[0].innerText;
+                const name = row.cells[1].innerText;
+
+                // Atostogos pažymimos kaip patvirtintos kalendoriuje
                 const dateCell = Array.from(calendarDates.children).find(cell => cell.title === `Nepatvirtinta: ${name}`);
                 if (dateCell) {
                     dateCell.classList.remove("vacation-request");
                     dateCell.classList.add("vacation");
                     dateCell.title = `Patvirtinta: ${name}`;
                 }
+
+                row.cells[2].innerText = "Patvirtinta";
             });
-            Object.keys(vacationRequests).forEach(dateKey => delete vacationRequests[dateKey]);
+        }
+
+        function approveRequest(dateStr) {
+            const requestRow = Array.from(requestList.children).find(row => row.cells[0].innerText === dateStr);
+            if (requestRow) {
+                requestRow.cells[2].innerText = "Patvirtinta";
+                const dateCell = Array.from(calendarDates.children).find(cell => cell.title === `Nepatvirtinta: ${vacationRequests[dateStr]}`);
+                dateCell.classList.remove("vacation-request");
+                dateCell.classList.add("vacation");
+                dateCell.title = `Patvirtinta: ${vacationRequests[dateStr]}`;
+            }
+        }
+
+        function rejectRequest(dateStr) {
+            const requestRow = Array.from(requestList.children).find(row => row.cells[0].innerText === dateStr);
+            if (requestRow) {
+                requestRow.remove();
+                const dateCell = Array.from(calendarDates.children).find(cell => cell.title === `Nepatvirtinta: ${vacationRequests[dateStr]}`);
+                dateCell.classList.remove("vacation-request");
+                delete vacationRequests[dateStr];
+            }
+        }
+
+        // Funkcija atšaukti atostogas
+        function cancelVacation() {
+            const name = cancelInput.value.trim();
+            if (name) {
+                // Surasti atostogas pagal vardą
+                const dateKey = Object.keys(vacationRequests).find(key => vacationRequests[key] === name);
+
+                if (dateKey) {
+                    // Pašalinti iš sąrašo
+                    const requestRow = Array.from(requestList.children).find(row => row.cells[1].innerText === name);
+                    if (requestRow) {
+                        requestRow.remove();
+                    }
+
+                    // Pašalinti iš kalendoriaus
+                    const dateCell = Array.from(calendarDates.children).find(cell => cell.title === `Nepatvirtinta: ${name}`);
+                    if (dateCell) {
+                        dateCell.classList.remove("vacation-request");
+                        delete vacationRequests[dateKey];
+                    }
+
+                    alert(`${name} atostogos atšauktos.`);
+                } else {
+                    alert(`${name} nėra užregistruotas atostogoms.`);
+                }
+            } else {
+                alert("Įveskite vardą, kurį norite atšaukti.");
+            }
         }
 
         prevMonthBtn.addEventListener("click", () => {
