@@ -76,6 +76,27 @@
             text-align: center;
         }
 
+        .rating {
+            display: flex;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 25px;
+            color: #ccc;
+            padding: 5px;
+        }
+
+        .rating input:checked ~ label,
+        .rating input:checked ~ label ~ label {
+            color: #ffcc00;
+        }
+
         footer {
             background-color: #1A1649;
             color: #fff;
@@ -144,23 +165,25 @@
         </div>
 
         <!-- Existing news items -->
-        <div class="news-item">
+        <div class="news-item" id="news-item-1">
             <img src="l.jfif" alt="Mindaugas Jonaitis sertifikatas">
             <h2>Mindaugas Jonaitis pelnė sertifikatą programavimo srityje</h2>
             <p>Mindaugas Jonaitis gavo aukščiausios klasės sertifikatą programavimo srityje, kuris praturtino įmonės techninę kompetenciją.</p>
+            <div class="rating">
+                <input type="radio" name="rating1" id="star5-1" value="5" onclick="rateNews(1, 5)">
+                <label for="star5-1">★</label>
+                <input type="radio" name="rating1" id="star4-1" value="4" onclick="rateNews(1, 4)">
+                <label for="star4-1">★</label>
+                <input type="radio" name="rating1" id="star3-1" value="3" onclick="rateNews(1, 3)">
+                <label for="star3-1">★</label>
+                <input type="radio" name="rating1" id="star2-1" value="2" onclick="rateNews(1, 2)">
+                <label for="star2-1">★</label>
+                <input type="radio" name="rating1" id="star1-1" value="1" onclick="rateNews(1, 1)">
+                <label for="star1-1">★</label>
+            </div>
         </div>
 
-        <div class="news-item">
-            <img src="R.jfif" alt="Asta Vainienė tarptautinis projektas">
-            <h2>Asta Vainienė sėkmingai baigė tarptautinį projektą</h2>
-            <p>Asta vadovavo sudėtingam tarptautiniam projektui, kuris buvo užbaigtas sėkmingai ir viršijo visus lūkesčius.</p>
-        </div>
-
-        <div class="news-item">
-            <img src="h.jfif" alt="Jonas Petraitis Metų Darbuotojo apdovanojimas">
-            <h2>Jonas Petraitis laimėjo Metų Darbuotojo apdovanojimą</h2>
-            <p>Jonas Petraitis buvo pripažintas Metų Darbuotoju už išskirtinį darbą ir inovatyvių sprendimų įgyvendinimą.</p>
-        </div>
+        <!-- Other news items can be added similarly -->
     </div>
 
     <footer>
@@ -195,6 +218,18 @@
             p.innerText = description;
             newsItem.appendChild(p);
 
+            // Add rating system
+            const ratingDiv = document.createElement('div');
+            ratingDiv.classList.add('rating');
+            ratingDiv.innerHTML = `
+                <input type="radio" name="rating" value="5" onclick="rateNews()"><label>★</label>
+                <input type="radio" name="rating" value="4" onclick="rateNews()"><label>★</label>
+                <input type="radio" name="rating" value="3" onclick="rateNews()"><label>★</label>
+                <input type="radio" name="rating" value="2" onclick="rateNews()"><label>★</label>
+                <input type="radio" name="rating" value="1" onclick="rateNews()"><label>★</label>
+            `;
+            newsItem.appendChild(ratingDiv);
+
             // Append the new news item to the content div
             document.getElementById('content').appendChild(newsItem);
 
@@ -202,6 +237,11 @@
             document.getElementById('news-title').value = '';
             document.getElementById('news-description').value = '';
             document.getElementById('news-image').value = '';
+        }
+
+        function rateNews(newsId, ratingValue) {
+            // Here, you can save the rating to a database or localStorage
+            console.log(`News ID: ${newsId} - Rating: ${ratingValue}`);
         }
     </script>
 
