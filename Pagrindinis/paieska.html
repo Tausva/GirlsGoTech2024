@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paieškos rezultatai</title>
+</head>
+<body>
+    <h1>Paieškos rezultatai</h1>
+    <p>Jūs ieškojote: <span id="paieskos-rezultatas"></span></p>
+
+    <script>
+        // Funkcija gauti paieškos parametrą iš URL
+        function gautiPaieskosParametra() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('q') || 'Nieko neįvesta';
+        }
+
+        // Rodo paieškos rezultatą puslapyje
+        document.getElementById('paieskos-rezultatas').textContent = gautiPaieskosParametra();
+    </script>
+</body>
+</html>
