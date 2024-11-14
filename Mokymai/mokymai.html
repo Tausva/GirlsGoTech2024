@@ -40,6 +40,91 @@
         #meniu img {
             height: 40px;
         }
+
+        #privalomi-mokymai {
+            margin-top: 20px;
+            padding: 15px;
+            width: 80%;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #privalomi-mokymai h2 {
+            color: #333;
+        }
+
+        #privalomi-mokymai ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .mokymas {
+            margin: 15px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .mokymas h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 20px;
+            margin: 5px 0;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #34967a;
+            width: 0;
+            transition: width 0.3s;
+        }
+
+        .status {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .rating {
+            margin-top: 5px;
+        }
+
+        .rating label {
+            font-size: 20px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating input[type="radio"] {
+            display: none;
+        }
+
+        .rating input[type="radio"]:checked ~ label {
+            color: #f7c34f;
+        }
+
+        .summary {
+            margin: 15px 0;
+            padding: 10px;
+            width: 80%;
+            background-color: #eef9f0;
+            border: 1px solid #ccd4cc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .summary p {
+            font-size: 16px;
+            color: #333;
+            margin: 5px 0;
+        }
     </style>
 </head>
 
@@ -58,6 +143,75 @@
 
     <div>
         Mokymai
+    </div>
+
+    <!-- Summary Section -->
+    <div class="summary">
+        <p>Baigti mokymai: 2 iš 5</p>
+        <p>Liko mokymų: 3</p>
+    </div>
+
+    <!-- Privalomi mokymai section -->
+    <div id="privalomi-mokymai">
+        <h2>Priskirti Privalomi Mokymai</h2>
+        <ul>
+            <li class="mokymas">
+                <h3>Saugos ir sveikatos mokymai</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 80%;"></div>
+                </div>
+                <p class="status">Statusas: Baigta 80%</p>
+                <div class="rating">
+                    <input type="radio" id="star5-1" name="rating1" value="5"><label for="star5-1">&#9733;</label>
+                    <input type="radio" id="star4-1" name="rating1" value="4"><label for="star4-1">&#9733;</label>
+                    <input type="radio" id="star3-1" name="rating1" value="3"><label for="star3-1">&#9733;</label>
+                    <input type="radio" id="star2-1" name="rating1" value="2"><label for="star2-1">&#9733;</label>
+                    <input type="radio" id="star1-1" name="rating1" value="1"><label for="star1-1">&#9733;</label>
+                </div>
+            </li>
+            <li class="mokymas">
+                <h3>Informacinės saugos mokymai</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 50%;"></div>
+                </div>
+                <p class="status">Statusas: Baigta 50%</p>
+            </li>
+            <li class="mokymas">
+                <h3>Pirmoji pagalba</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                </div>
+                <p class="status">Statusas: Baigta 100%</p>
+                <div class="rating">
+                    <input type="radio" id="star5-2" name="rating2" value="5"><label for="star5-2">&#9733;</label>
+                    <input type="radio" id="star4-2" name="rating2" value="4"><label for="star4-2">&#9733;</label>
+                    <input type="radio" id="star3-2" name="rating2" value="3"><label for="star3-2">&#9733;</label>
+                    <input type="radio" id="star2-2" name="rating2" value="2"><label for="star2-2">&#9733;</label>
+                    <input type="radio" id="star1-2" name="rating2" value="1"><label for="star1-2">&#9733;</label>
+                </div>
+            </li>
+            <li class="mokymas">
+                <h3>Gaisrinės saugos mokymai</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 100%;"></div>
+                </div>
+                <p class="status">Statusas: Baigta 100%</p>
+                <div class="rating">
+                    <input type="radio" id="star5-3" name="rating3" value="5"><label for="star5-3">&#9733;</label>
+                    <input type="radio" id="star4-3" name="rating3" value="4"><label for="star4-3">&#9733;</label>
+                    <input type="radio" id="star3-3" name="rating3" value="3"><label for="star3-3">&#9733;</label>
+                    <input type="radio" id="star2-3" name="rating3" value="2"><label for="star2-3">&#9733;</label>
+                    <input type="radio" id="star1-3" name="rating3" value="1"><label for="star1-3">&#9733;</label>
+                </div>
+            </li>
+            <li class="mokymas">
+                <h3>Profesionalūs bendravimo įgūdžiai</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 20%;"></div>
+                </div>
+                <p class="status">Statusas: Baigta 20%</p>
+            </li>
+        </ul>
     </div>
 
 </body>
