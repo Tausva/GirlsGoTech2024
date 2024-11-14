@@ -18,9 +18,9 @@
             max-width: 300px;
             width: 100%;
             padding: 20px;
-            border: 1px solid #ccc;
+            border: 1px solid #0b0a0a;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(63, 61, 61, 0.1);
             margin-bottom: 20px;
         }
 
@@ -29,27 +29,34 @@
             width: calc(100% - 20px);
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #0e0a0a;
             border-radius: 5px;
         }
 
         .login-container input[type="submit"] {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
-            color: white;
+            background-color: #BFE4FF;
+            color: rgb(0, 0, 0);
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
         .login-container input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #BFE4FF;
         }
 
         .logo {
             max-width: 200px;
             margin-top: 20px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+            display: none; /* Paslėpta, kol nėra klaidos */
         }
     </style>
     <script>
@@ -59,12 +66,15 @@
             // Imituojamas prisijungimas - galima pridėti tikrinimus čia
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
 
             if (username === "admin" && password === "password") {
                 // Jeigu prisijungimo duomenys teisingi, nukreipia į pagrindinį puslapį
                 window.location.href = "../Pagrindinis/pagrindinis.html";
             } else {
-                alert("Neteisingas naudotojo vardas arba slaptažodis.");
+                // Rodoma klaidos žinutė
+                errorMessage.textContent = "Neteisingas naudotojo vardas arba slaptažodis.";
+                errorMessage.style.display = "block";
             }
         }
     </script>
@@ -72,7 +82,7 @@
 
 <body>
     <div>
-        Pradinis
+        <!-- Galėtumėte pridėti kitą turinį čia, jei reikia -->
     </div>
     <div class="login-container">
         <form onsubmit="login(event)">
@@ -84,6 +94,8 @@
 
             <input type="submit" value="Prisijungti">
         </form>
+        <!-- Klaidos žinutė -->
+        <div id="error-message" class="error-message"></div>
     </div>
     <div>
         <!-- Logotipas po prisijungimo forma -->
