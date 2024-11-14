@@ -35,8 +35,8 @@
         }
 
         #padekos-forma button {
-            background-color: #34967a;
-            color: white;
+            background-color: #BFE4FF;
+            color: black;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
@@ -58,7 +58,7 @@
         }
 
         #meniu {
-            background-color: #34967a;
+            background-color: #1A1649;
             padding: 10px;
             color: #fff;
             display: flex;
@@ -105,7 +105,7 @@
 
         /* Stilius antraštei */
         h1 {
-            color: #34967a;
+            color: #1A1649;
             text-align: center;
             margin: 20px 0;
         }
@@ -113,7 +113,7 @@
 </head>
 <body>
     <div id="meniu">
-    <img src="..MONOCHROMATIC/ADFORM LOGO WHITE.png" alt="Įmonės Pavadinimas">
+    <img src="../Ikonos ir logo/ADFORM LOGO/MONOCHROMATIC/ADFORM LOGO WHITE.png" alt="Įmonės Pavadinimas">
     <a href="../Pagrindinis/pagrindinis.html">Pagrindinis</a>
     <a href="../Naujienos/naujienos.html">Naujienos</a>
     <a href="../Atostogos/atostogos.html">Atostogos</a>
@@ -122,8 +122,6 @@
     <a href="../Darbuotojai/darbuotojai.html">Darbuotojai</a>
     <a href="../Komandiruotes/komandiruotes.html">Komandiruotės</a>
 </div>
-
-    <!-- Jūsų esamas HTML čia -->
 
     <!-- Padėkos Forma -->
     <div id="padekos-forma">
@@ -135,29 +133,14 @@
             <label for="padeka">Padėkos tekstas:</label>
             <textarea id="padeka" name="padeka" required></textarea>
 
-            <button type="submit">Siųsti Padėką</button>
+            <button onclick="siusti()">Siųsti Padėką</button>
         </form>
         <p id="padekaAtsakymas"></p>
     </div>
 
     <script>
-        document.getElementById('padekaForm').addEventListener('submit', async function (event) {
-            event.preventDefault();
-            const darbuotojas = document.getElementById('darbuotojas').value;
-            const padeka = document.getElementById('padeka').value;
-
-            const response = await fetch('/padekos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ darbuotojas, padeka }),
-            });
-
-            const result = await response.text();
-            document.getElementById('padekaAtsakymas').innerText = result;
-            document.getElementById('padekaForm').reset();
-        });
+        function siusti(){alert('Padėka nusiųsta')}
+        
     </script>
 </body>
 </html>
