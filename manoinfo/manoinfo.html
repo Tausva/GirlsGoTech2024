@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vartotojo Informacija</title>
+    <style>
+        h1 {
+            color: #1A1649; /* Tamsiai mėlyna spalva */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .info-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(1, 1, 1, 0.1);
+            background-color: #BFE4FF;
+        }
+
+        .info-item {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .edit-section {
+            margin-top: 20px;
+        }
+
+        .edit-button, .report-button {
+            padding: 10px;
+            background-color: #1A1649;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-button:hover, .report-button:hover {
+            background-color: #000e2f;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function updatePhoneNumber() {
+            const phoneInput = document.getElementById('phone-input').value;
+            const phoneDisplay = document.getElementById('phone-display');
+            const errorMessage = document.getElementById('error-message');
+            const reportButton = document.getElementById('report-button');
+
+            // Regex, kad patikrintų telefono numerio formatą (Lietuvos numerio pavyzdys)
+            const phonePattern = /^\+370\s?\d{3}\s?\d{5}$/;
+
+            if (phoneInput && phonePattern.test(phoneInput)) {
+                // Jei numeris teisingas, atnaujina duomenis ir paslepia klaidos pranešimus
+                phoneDisplay.textContent = phoneInput;
+                errorMessage.textContent = '';
+                reportButton.style.display = 'none';
+            } else {
+                // Jei numeris neteisingas, rodo klaidos pranešimą ir mygtuką pranešti administratoriui
+                errorMessage.textContent = "Neteisingas telefono numerio formatas. Įveskite teisingą numerį (+370 xxx xxxxx).";
+                reportButton.style.display = 'block';
+            }
+        }
+
+        function reportIssue() {
+            alert("Duomenų netikslumas praneštas administratoriui.");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Vartotojo Informacija</h1>
+    <div class="info-container">
+        <div class="info-item"><span class="label">Vardas:</span> Jonas</div>
+        <div class="info-item"><span class="label">Pavardė:</span> Jonaitis</div>
+        <div class="info-item"><span class="label">El. paštas:</span> jonas.jonaitis@adform.lt</div>
+        <div class="info-item"><span class="label">Tel. numeris:</span> <span id="phone-display">+370 600 12345</span></div>
+        <div class="info-item"><span class="label">Įsidarbinimo data:</span> 2020-01-15</div>
+        <div class="info-item"><span class="label">Atlyginimas:</span> 1500 EUR</div>
+    </div>
+
+    <!-- Redaguoti telefono numerį -->
+    <div class="edit-section">
+        <label for="phone-input">Įveskite naują tel. numerį:</label>
+        <input type="text" id="phone-input" placeholder="+370 ...">
+        <button class="edit-button" onclick="updatePhoneNumber()">Išsaugoti</button>
+        <div id="error-message" class="error-message"></div>
+        <button id="report-button" class="report-button" onclick="reportIssue()" style="display: none;">Pranešti administratoriui</button>
+    </div>
+</body>
+
+</html>
