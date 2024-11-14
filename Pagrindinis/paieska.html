@@ -21,9 +21,86 @@
             color: #625aca;
             text-decoration: none;
         }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        #meniu {
+            background-color: #1a1649;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        #meniu a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        #meniu img {
+            height: 40px;
+        }
+
+        #turinys {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px;
+        }
+
+        #naujienos {
+            width: 60%;
+            margin-right: 20px;
+        }
+
+        #kalendorius {
+            width: 30%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .naujiena {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
+    <div id="meniu">
+        <img src="../Ikonos ir logo/ADFORM LOGO/MONOCHROMATIC/ADFORM LOGO WHITE.png" alt="Imonės Pavadinimas">
+        <p>Change the game</p>
+        <a href="../Pagrindinis/pagrindinis.html">Pagrindinis</a>
+        <a href="../Naujienos/naujienos.html">Naujienos</a>
+        <a href="../Atostogos/atostogos.html">Atostogos</a>
+        <a href="../Mokymai/mokymai.html">Mokymai</a>
+        <a href="../Padekos/padekos.html">Padėkos</a>
+        <a href="../Darbuotojai/darbuotojai.html">Darbuotojai</a>
+        <a href="../Komandiruotes/komandiruotes.html">Komandiruotės</a>
+        <a href="../manoinfo/manoinfo.html">Mano innformacija</a>
+        <form action="paieska.html" method="get">
+            <input type="text" name="q" placeholder="Ieškoti...">
+            <button type="submit">Paieška</button>
+        </form>
+        
+    </div>
     <h1>Paieškos rezultatai</h1>
     <p>Jūs ieškojote: <span id="paieskos-rezultatas"></span></p>
 
