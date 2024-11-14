@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="lt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adform - Pagrindinis Puslapis</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        #meniu {
+            background-color: #34967a;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        #meniu a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        #meniu img {
+            height: 40px;
+        }
+
+        #turinys {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px;
+        }
+
+        #naujienos {
+            width: 60%;
+            margin-right: 20px;
+        }
+
+        #kalendorius {
+            width: 30%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .naujiena {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="meniu">
+        <img src="../ADFORM LOGO WHITE.png" alt="Imonės Pavadinimas">
+        <a href="../Pagrindinis/pagrindinis.html">Pagrindinis</a>
+        <a href="../Naujienos/naujienos.html">Naujienos</a>
+        <a href="../Atostogos/atostogos.html">Atostogos</a>
+        <a href="../Mokymai/mokymai.html">Mokymai</a>
+        <a href="../Padekos/padekos.html">Padėkos</a>
+        <a href="../Darbuotojai/darbuotojai.html">Darbuotojai</a>
+        <a href="../Komandiruotes/komandiruotes.html">Komandiruotės</a>
+    </div>
+
+    <div id="turinys">
+        <div id="naujienos">
+            <h1>Sveiki atvykę į Adform!</h1>
+
+            <h2>Paskutinės naujienos:</h2>
+
+            <div class="naujiena">
+                <h3>Planuojamas intraneto atnaujinimas!</h3>
+                <p>Hey Visi,
+                    Kreipiamės su šita žinute, nes ketiname šiek tiek pasišviesdinti Vidinį Intranetą! 🚀 Planuojame
+                    atnaujinti sistemą 2023 m. lapkričio 30 d.. Tai žingsnis link geresnės patirties ir daugiau
+                    funkcijų.
+                    Bet, kaip visada, norime jus perspėti - šis atnaujinimas gali sukelti ką tik keletą "oops" momentų.
+                    Mes
+                    žadame stengtis, kad tai truktų kiek įmanoma trumpiau. 😅
+                    Atnaujinimo laikas: 2023 m. lapkričio 30 d. nuo 14:00 iki 17:30 val. (GMT+2). Bandome tai padaryti
+                    taip,
+                    kad visi galėtumėte ramiai pabaigti darbo dieną.
+                    Padėkite mums, žinodami šitą info, planuojant savo darbus. Jeigu kas nors neaišku arba atsirastų
+                    problemų, mes čia, parašykite mums.
+
+                    Ačiū už supratimą ir kantrybę!</p>
+                <small>2023-11-16</small>
+            </div>
+
+            <div class="naujiena">
+                <h3>Kaledinis Vakarėlis - Saugokit Datą! 🎄🎉</h3>
+                <p>
+                    Eikime į šviesiąją šventinę nuotaiką! 🌟
+                    Šilti sveikinimai visiems! Norime jus informuoti, kad šiais metais planuojame surengti kiek smagų
+                    Kaledinį vakarėlį! 🎄✨ Tai bus puiki proga visiems kartu pasimėgauti šventiniu oru, smagiomis
+                    veiklomis
+                    ir, žinoma, skaniu maistu.
+                    Data: 2023 m. gruodžio 7 d. (ketvirtadienis)
+                    Laikas: 18:00 val.
+                    Vakarėlį planuojame surengti . Galėsite dalyvauti įvairiose smagiose veiklose, susipažinti su
+                    kolegomis
+                    ir tiesiog puikiai praleisti laiką. Taip pat pasirūpinsime kūčių stalais su gardžiais užkandžiais!
+                    Norėtume, kad būtumėte su mumis šioje šventinėje nuotaikoje. Jeigu turite kokių nors specialių
+                    pageidavimų arba klausimų, prašome nedvejoti mums parašyti.
+                    Laukiame visų su dideliu susidomėjimu ir jau laukiame šios nuostabios šventės! 🎅🎁
+                </p>
+                <small>2023-11-11</small>
+            </div>
+        </div>
+
+        <div id="kalendorius">
+            <h2>Kalendorius</h2>
+            <iframe
+                src="https://calendar.google.com/calendar/embed?height=400&wkst=2&bgcolor=%23ffffff&ctz=Europe%2FVilnius&showTitle=0&showDate=1&showPrint=0&showTabs=1&showCalendars=0&hl=lt&src=NjQ2NTcwNzI2NTczNjk2YTYxQGdtYWlsLmNvbQ&src=ZW4tZ2IubGl0aHVhbmlhbiNob2xpZGF5QGdyb3VwLnYuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23039BE5&color=%230B8043"
+                style="border:solid 1px #777" width="100%" height="400" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+
+</body>
+
+</html>
