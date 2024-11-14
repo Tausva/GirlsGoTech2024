@@ -161,11 +161,42 @@
             margin-bottom: 10px;
         }
 
-        .upcoming-trainings ul {
-            list-style-type: disc;
-            padding-left: 20px;
+        .upcoming-training-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f3f4f8;
+            border-radius: 5px;
+        }
+
+        .upcoming-training-item h4 {
+            margin: 0;
+            font-size: 18px;
+            color: #1a1649;
+        }
+
+        .training-details {
+            font-size: 14px;
             color: #555;
+            margin-top: 5px;
+        }
+
+        /* Button styles */
+        .register-button,
+        .contact-button {
+            background-color: #1a1649;
+            color: white;
+            border: none;
+            padding: 10px 15px;
             font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .register-button:hover,
+        .contact-button:hover {
+            background-color: #3d2b80;
         }
     </style>
 </head>
@@ -188,7 +219,7 @@
         <div class="progress-overview">
             <div class="progress-fill" style="width: 40%;"></div> <!-- Adjust width based on actual progress -->
         </div>
-        <p>2 iš 5 mokymų baigti</p>
+        <p>0 iš 1 mokymų baigti</p>
     </div>
 
     <!-- Privalomi mokymai section -->
@@ -209,69 +240,59 @@
                     <input type="radio" id="star1-1" name="rating1" value="1"><label for="star1-1">&#9733;</label>
                 </div>
             </li>
-            <li class="mokymas">
-                <h3>Informacinės saugos mokymai</h3>
-                <div class="progress-container">
-                    <div class="progress-bar" style="width: 50%;"></div>
-                </div>
-                <p class="status">Statusas: Baigta 50%</p>
-            </li>
-            <li class="mokymas">
-                <h3>Pirmoji pagalba</h3>
-                <div class="progress-container">
-                    <div class="progress-bar" style="width: 100%;"></div>
-                </div>
-                <p class="status">Statusas: Baigta 100%</p>
-                <div class="rating">
-                    <input type="radio" id="star5-2" name="rating2" value="5"><label for="star5-2">&#9733;</label>
-                    <input type="radio" id="star4-2" name="rating2" value="4"><label for="star4-2">&#9733;</label>
-                    <input type="radio" id="star3-2" name="rating2" value="3"><label for="star3-2">&#9733;</label>
-                    <input type="radio" id="star2-2" name="rating2" value="2"><label for="star2-2">&#9733;</label>
-                    <input type="radio" id="star1-2" name="rating2" value="1"><label for="star1-2">&#9733;</label>
-                </div>
-            </li>
-            <li class="mokymas">
-                <h3>Gaisrinės saugos mokymai</h3>
-                <div class="progress-container">
-                    <div class="progress-bar" style="width: 100%;"></div>
-                </div>
-                <p class="status">Statusas: Baigta 100%</p>
-                <div class="rating">
-                    <input type="radio" id="star5-3" name="rating3" value="5"><label for="star5-3">&#9733;</label>
-                    <input type="radio" id="star4-3" name="rating3" value="4"><label for="star4-3">&#9733;</label>
-                    <input type="radio" id="star3-3" name="rating3" value="3"><label for="star3-3">&#9733;</label>
-                    <input type="radio" id="star2-3" name="rating3" value="2"><label for="star2-3">&#9733;</label>
-                    <input type="radio" id="star1-3" name="rating3" value="1"><label for="star1-3">&#9733;</label>
-                </div>
-            </li>
-            <li class="mokymas">
-                <h3>Komandinių įgūdžių mokymai</h3>
-                <div class="progress-container">
-                    <div class="progress-bar" style="width: 30%;"></div>
-                </div>
-                <p class="status">Statusas: Baigta 30%</p>
-            </li>
-            <li class="mokymas">
-                <h3>Profesionalūs bendravimo įgūdžiai</h3>
-                <div class="progress-container">
-                    <div class="progress-bar" style="width: 20%;"></div>
-                </div>
-                <p class="status">Statusas: Baigta 20%</p>
-            </li>
         </ul>
     </div>
 
     <!-- Upcoming Internal Trainings Section -->
     <div class="upcoming-trainings">
         <h3>Busimi Vidiniai Mokymai</h3>
-        <ul>
-            <li>Efektyvaus laiko planavimo mokymai</li>
-            <li>Lyderystės ugdymo seminaras</li>
-            <li>Streso valdymo praktinis užsiėmimas</li>
-            <li>Projektų valdymo įgūdžiai</li>
-            <li>Inovacijų skatinimo dirbtuvės</li>
-        </ul>
+
+        <div class="upcoming-training-item">
+            <h4>Efektyvaus laiko planavimo mokymai</h4>
+            <div class="training-details">Data: 2023-12-15</div>
+            <div class="training-details">Laisvos vietos: 5</div>
+            <div class="training-details">Registracijos: 10</div>
+            <button class="register-button" onclick="registerTraining(5)">Užsiregistruoti</button>
+        </div>
+
+        <div class="upcoming-training-item">
+            <h4>Lyderystės ugdymo seminaras</h4>
+            <div class="training-details">Data: 2024-01-20</div>
+            <div class="training-details">Laisvos vietos: 3</div>
+            <div class="training-details">Registracijos: 12</div>
+            <button class="register-button" onclick="registerTraining(3)">Užsiregistruoti</button>
+        </div>
+
+        <div class="upcoming-training-item">
+            <h4>Streso valdymo praktinis užsiėmimas</h4>
+            <div class="training-details">Data: 2024-02-05</div>
+            <div class="training-details">Laisvos vietos: 8</div>
+            <div class="training-details">Registracijos: 7</div>
+            <button class="register-button" onclick="registerTraining(8)">Užsiregistruoti</button>
+        </div>
+
+        <div class="upcoming-training-item">
+            <h4>Projektų valdymo įgūdžiai</h4>
+            <div class="training-details">Data: 2024-03-12</div>
+            <div class="training-details">Laisvos vietos: 2</div>
+            <div class="training-details">Registracijos: 15</div>
+            <button class="contact-button" onclick="contactAdmin()">Susisiekti su administracija</button>
+        </div>
     </div>
+
+    <script>
+        function registerTraining(availableSpaces) {
+            if (availableSpaces > 0) {
+                alert("Registracija sėkminga!");
+            } else {
+                alert("Atsiprašome, vietos užpildytos. Norėdami gauti daugiau informacijos, susisiekite su administracija.");
+            }
+        }
+
+        function contactAdmin() {
+            alert("Prašome susisiekti su administracija dėl papildomos informacijos.");
+        }
+    </script>
 
 </body>
 
