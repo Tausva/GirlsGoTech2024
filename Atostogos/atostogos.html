@@ -59,6 +59,129 @@
     <div>
         Atostogos
     </div>
+    <div id="calendar-container">
+        <div id="calendar">
+            <div id="calendar-header">
+                <button id="prev-month">&lt;</button>
+                <h2 id="month-year"></h2>
+                <button id="next-month">&gt;</button>
+            </div>
+            <div id="calendar-days">
+                <div>P</div><div>A</div><div>T</div><div>K</div><div>Pn</div><div>Š</div><div>S</div>
+            </div>
+            <div id="calendar-dates"></div>
+        </div>
+    </div>
+    
+    <script>
+        const calendarDates = document.getElementById("calendar-dates");
+        const monthYear = document.getElementById("month-year");
+        const prevMonthBtn = document.getElementById("prev-month");
+        const nextMonthBtn = document.getElementById("next-month");
+    
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+    
+        function updateCalendar(month, year) {
+            calendarDates.innerHTML = "";
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+            monthYear.innerHTML = `${new Date(year, month).toLocaleString('lt-LT', { month: 'long' })} ${year}`;
+    
+            for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
+                const emptyCell = document.createElement("div");
+                emptyCell.classList.add("empty");
+                calendarDates.appendChild(emptyCell);
+            }
+    
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateCell = document.createElement("div");
+                dateCell.innerHTML = day;
+                calendarDates.appendChild(dateCell);
+            }
+        }
+    
+        prevMonthBtn.addEventListener("click", () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            updateCalendar(currentMonth, currentYear);
+        });
+    
+        nextMonthBtn.addEventListener("click", () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            updateCalendar(currentMonth, currentYear);
+        });
+    
+        updateCalendar(currentMonth, currentYear);
+    </script>
+    
+    <style>
+        #calendar-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            background-color: #f4f4f4;
+        }
+    
+        #calendar {
+            text-align: center;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            background-color: #fff;
+        }
+    
+        #calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    
+        #calendar-header button {
+            background-color: #34967a;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    
+        #calendar-days, #calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            font-size: 14px;
+        }
+    
+        #calendar-days div, #calendar-dates div {
+            padding: 8px;
+            border-radius: 4px;
+        }
+    
+        #calendar-days {
+            font-weight: bold;
+            color: #666;
+        }
+    
+        #calendar-dates div:not(.empty) {
+            background-color: #e9f6f2;
+            cursor: pointer;
+        }
+    </style>
+    
+    
 
 </body>
 
